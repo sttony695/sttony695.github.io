@@ -467,18 +467,6 @@ function autoTrade() {
                         gamePage.diplomacy.feedElders();
                     }
 
-                    //blackcoin  speculation
-                    if (gamePage.science.get("blackchain").researched || gamePage.resPool.get("blackcoin").value > 0) {
-                        if (gamePage.resPool.get("blackcoin").value > 0 && gamePage.calendar.cryptoPrice > 1099 ) {
-                            gamePage.diplomacy.sellBcoin()
-                        }
-                        if (!switches['CollectResBReset'] && gamePage.resPool.get("relic").value > 1000 + gamePage.resPool.get("blackcoin").value*1000 && gamePage.calendar.cryptoPrice < 900 ) {
-                            gamePage.diplomacy.buyBcoin()
-                        }
-                    }
-
-                }
-
                 // name, buys, sells
                 let tradersAll = [
                  ['zebras',
@@ -1046,23 +1034,6 @@ function autozig() {
                                                 if (result) {
                                                 }})
             }
-        }
-        if (!gamePage.workshop.get("relicStation").researched && ((gamePage.resPool.get('relic').value  < (gamePage.challenges.isActive("energy") ? 25 : 5) && gamePage.resPool.get('timeCrystal').value > 50) || (gamePage.resPool.get('relic').value < gamePage.resPool.get('timeCrystal').value && gamePage.resPool.get('timeCrystal').value > 3000)) ) {
-            if (gamePage.religionTab.refineTCBtn && gamePage.religionTab.refineTCBtn.model.visible){
-                gamePage.religionTab.refineTCBtn.controller.buyItem(gamePage.religionTab.refineTCBtn.model, {}, function(result) {
-                    if (result) {
-                         gamePage.religionTab.refineTCBtn.update();
-                    }
-                    });
-            }
-
-        }
-        else if (gamePage.workshop.get("relicStation").researched && gamePage.time.getCFU("ressourceRetrieval").val > 1 && gamePage.calendar.year > 1000 && gamePage.resPool.get('relic').value < gamePage.resPool.get('timeCrystal').value && gamePage.resPool.get('timeCrystal').value > 3000){
-             if (gamePage.religionTab.refineTCBtn.model.allLink.visible){
-                    gamePage.religionTab.refineTCBtn.controller.transform(gamePage.religionTab.refineTCBtn.model, 1, {}, function(result) {
-                                                    if (result) {
-                                                    }})
-             }
         }
 
 
